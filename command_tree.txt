@@ -1,0 +1,42 @@
+
+./vlan_map.py [device_list] command parameter1 parameter2
+
+[device_list]                   ---> this can be single vendor, multiple in some cases or island name
+
+        vendor                          ---> vendor name                                                OK
+        vendor detail,all               ---> vendor name and details                                    OK
+
+        vlan                            ---> vlans configured on the device                             ok
+        vlan all                        ---> all vlans on all ports                                     Cisco
+        vlan allinfo                    ---> all vlans on all ports, returns dictionary                 OK
+        vlan check                      ---> check which vlans are not configured and which not used    Cisco
+        vlan island                     ---> check if island vlans match vlans on island switches       OK
+        vlan island <island name>       ---> check if island vlans match vlans on switches              OK
+        vlan <vlan id>                  ---> ports where this vlan is configured                        OK
+        vlan <port name>                ---> vlans on this port                                         OK
+        vlan <port name> <vlan id>      ---> if vlan is member on this port                             OK
+        vlan <vlan id> <port name>      ---> if vlan is member on this port                             OK
+
+        port                    ---> all ports with description                                 OK
+        port all                ---> all ports with all info (status, lacp, switchport mode)    OK
+        port <vlan id>          ---> WILL NOT BE IMPLEMENTED, use vlan options for this
+        port <port id>          ---> one port with all info (status, lacp, switchport mode)     OK 
+
+
+[device1,device2]
+
+        link                    ---> common link for both based on description match            OK
+        link vlan               ---> common link has same vlans on both side                    OK
+        link <vlan id>          ---> common link has vlan congigured on both ends               OK
+        link island
+        link island <vlan>
+
+[island name]
+
+        island 
+        island <vlan> 
+
+[device1,device2,device3,...]
+        path
+        path vlan <vlan>
+
